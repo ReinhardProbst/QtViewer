@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Refresh.png</file>
+        <file>qml/main.qml</file>
+        <file>qml/FrameConfig.qml</file>
+        <file>images/Histogram.png</file>
+        <file>images/Trigger.png</file>
+        <file>qml/FrameProfileQPI.qml</file>
+        <file>qml/FrameProfileCanvas.qml</file>
+    </qresource>
+</RCC>
