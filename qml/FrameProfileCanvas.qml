@@ -4,7 +4,7 @@ import QtQuick.Controls 2.2
 Frame {
     id: frameCanvas
     background: Rectangle {
-        color: "#f0f0f0"
+        color: design.lightGrey
     }
     Canvas {
         objectName: "frameProfileCanvas"

@@ -6,7 +6,7 @@ import FrameProfileQPI 1.0
 Frame {
     id: frameUI
     background: Rectangle {
-        color: "#f0f0f0"
+        color: design.lightGrey
     }
     ColumnLayout {
         anchors.fill: parent
@@ -45,10 +45,10 @@ Frame {
             onWheel: {
                 console.info("WheelyQPI: ", wheel.angleDelta.y)
                 if (wheel.angleDelta.y < 0) {
-                    frameProfileQPI2.color = "red"
+                    frameProfileQPI2.color = design.red
                 }
                 else {
-                    frameProfileQPI2.color = "green"
+                    frameProfileQPI2.color = design.green
                 }
                 frameProfileQPI2.update()
             }

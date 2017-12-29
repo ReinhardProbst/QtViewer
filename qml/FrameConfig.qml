@@ -5,7 +5,7 @@ import QtQuick.Dialogs 1.2
 
 Frame {
     background: Rectangle {
-        color: "#f0f0f0"
+        color: design.lightGrey
     }
     GridLayout {
         id: frameGrid

@@ -2,19 +2,14 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 ApplicationWindow {
-    readonly property color grey: "#b2b1b1"
-    readonly property color lightGrey: "#f0f0f0"
-    readonly property color darkGrey: "#808080"
-    readonly property color white: "#ffffff"
-    readonly property color blue: "#0000ff"
-    readonly property color red: "#ff0000"
-
     objectName: "mainWindow"
     id: mainWindow
     visible: true
     width: 800
     height: 600
     title: qsTr("Profilometer")
+
+    Design{ id: design }
 
     SwipeView {
         id: swipeView
@@ -25,21 +20,21 @@ ApplicationWindow {
             Label {
                 objectName: "frameConfig"
                 text: qsTr("Configuration")
-                color: "blue"
+                color: design.blue
                 anchors.centerIn: parent
             }
         }
         FrameProfileCanvas {
             Label {
                 text: qsTr("Profile with canvas")
-                color: "blue"
+                color: design.blue
                 anchors.centerIn: parent
             }
         }
         FrameProfileQPI {
             Label {
                 text: qsTr("Nominal and profile with painter")
-                color: "blue"
+                color: design.blue
                 anchors.centerIn: parent
             }
         }
@@ -49,14 +44,14 @@ ApplicationWindow {
         id: tabBarH
         currentIndex: swipeView.currentIndex
         background: Rectangle {
-                color: grey
+                color: design.grey
         }
         height: Math.max(tabButton0.height, tabButton1.height, tabButton2.height)
         TabButton {
             id: tabButton0
 //            contentItem: Text {
 //                text: qsTr("Configuration")
-//                color: "red"
+//                color: design.red
 //                horizontalAlignment: Text.AlignHCenter
 //                verticalAlignment: Text.AlignVCenter
 //                elide: Text.ElideRight
@@ -66,7 +61,7 @@ ApplicationWindow {
                 source: "../images/Histogram.png"
             }
             background: Rectangle {
-                 color: tabBarH.currentIndex == 0 ? grey : darkGrey
+                 color: tabBarH.currentIndex == 0 ? design.grey : design.darkGrey
             }
         }
         TabButton {
@@ -77,7 +72,7 @@ ApplicationWindow {
                 source: "../images/Trigger.png"
             }
             background: Rectangle {
-                color: tabBarH.currentIndex == 1 ? grey : darkGrey
+                color: tabBarH.currentIndex == 1 ? design.grey : design.darkGrey
             }
         }
         TabButton {
@@ -88,7 +83,7 @@ ApplicationWindow {
                 source: "../images/Refresh.png"
             }
             background: Rectangle {
-                color: tabBarH.currentIndex == 2 ? grey : darkGrey
+                color: tabBarH.currentIndex == 2 ? design.grey : design.darkGrey
             }
         }
     }

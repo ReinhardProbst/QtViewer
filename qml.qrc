@@ -7,5 +7,6 @@
         <file>images/Trigger.png</file>
         <file>qml/FrameProfileQPI.qml</file>
         <file>qml/FrameProfileCanvas.qml</file>
+        <file>qml/Design.qml</file>
     </qresource>
 </RCC>
