@@ -1,6 +1,8 @@
 #include <functional>
 #include <iostream>
 
+#include <qqmlcontext.h>
+
 #include <QBasicTimer>
 #include <QGuiApplication>
 #include <QObject>
@@ -11,7 +13,7 @@
 
 #include <QtQuick/QQuickView>
 
-#include "filenames.hpp"
+#include "FileNameCtrl.hpp"
 #include "frameprofileQPI.hpp"
 
 template <typename V> class VTimer : public QObject {
@@ -93,6 +95,7 @@ class QpiFrameUpdate {
 
 int main(int argc, char *argv[]) {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QGuiApplication app(argc, argv);
 
     /*
@@ -100,10 +103,21 @@ int main(int argc, char *argv[]) {
      */
     qmlRegisterType<FrameProfileQPI>("FrameProfileQPI", 1, 0, "FrameProfileQPI");
 
+    // Register C++ class as QML type
+    // This is needed in order to access the members of the FileNameCtrl instance from the QML code
+    qmlRegisterUncreatableType<FileNameCtrl>("FileNameCtrl", 1, 0, "FileNameCtrl", "FileNameCtrl cannot be instantiated from QML");
+
+    // This instance represents the "business logic"
+    FileNameCtrl fileNameCtrl;
+
     /*
      * Load Qt/QML system
      */
     QQmlApplicationEngine engine;
+
+    // Publish the FileNameCtrl instance to QML
+    // You can access the ProfileController from QML using the global property "fileNameControl"
+    engine.rootContext()->setContextProperty("fileNameControl", &fileNameCtrl);
 
     QStringList pathlist = engine.importPathList();
     for (auto a : pathlist)
@@ -126,6 +140,7 @@ int main(int argc, char *argv[]) {
 
     /*
      * Set QML property directly
+     * Should not used in production code because this relies on known QML objects
      */
     QObject *frameConfig = rootObj->findChild<QObject *>(QString{"frameConfig"});
     if (frameConfig)
@@ -135,6 +150,7 @@ int main(int argc, char *argv[]) {
 
     /*
      * Get QML property directly
+     * Should not used in production code because this relies on known QML objects
      */
     QObject *frameProfileCanvas = rootObj->findChild<QObject *>(QString{"frameProfileCanvas"});
     if (frameProfileCanvas) {
@@ -144,20 +160,8 @@ int main(int argc, char *argv[]) {
         std::cout << "No object frameProfileCanvas found" << std::endl;
 
     /*
-     * Signal / slots
-     */
-    FileNames fn;
-
-    QObject::connect(rootObj->findChild<QObject *>(QString{"fileNominal"}), SIGNAL(nominalName(const QString &)), &fn,
-                     SLOT(nominalName(const QString &)));
-
-    QObject::connect(rootObj->findChild<QObject *>(QString{"fileTrend"}), SIGNAL(trendName(const QString &)), &fn, SLOT(trendName(const QString &)));
-
-    QObject::connect(&fn, &FileNames::trendNameChanged,
-                     [&](const QString &fn) { std::cout << "Selected trend file name by lamda: " << fn.toStdString() << std::endl; });
-
-    /*
      * Set QML property directly
+     * Should not used in production code because this relies on known QML objects
      */
     QObject *frameProfileQPIText = rootObj->findChild<QObject *>(QString{"frameProfileQPIText"});
     if (frameProfileQPIText)
@@ -167,11 +171,21 @@ int main(int argc, char *argv[]) {
 
     /*
      * Get QML property directly, exposed as C++ class to QML and get it back from QML
+     * Should not used in production code because this relies on known QML objects
      */
     FrameProfileQPI *fpQPI = rootObj->findChild<FrameProfileQPI *>(QString{"frameProfileQPI"});
     if (fpQPI) {
         std::cout << "Object frameProfileQPI found and castable" << std::endl;
     }
+
+    /*
+     * Signal / slots, established in C++ solely
+     */
+    QObject::connect(&fileNameCtrl, &FileNameCtrl::trendChanged,
+                     [&](QString fn) { std::cout << "Selected trend file name by lamda: " << fn.toStdString() << std::endl; });
+
+    QObject::connect(&fileNameCtrl, &FileNameCtrl::nominalChanged,
+                     [&](QString fn) { std::cout << "Selected nominal file name by lamda: " << fn.toStdString() << std::endl; });
 
     /*
      * Set changes to QML property and update canvas

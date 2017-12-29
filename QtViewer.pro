@@ -42,5 +42,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    src/filenames.hpp \
-    src/frameprofileQPI.hpp
+    src/frameprofileQPI.hpp \
+    src/FileNameCtrl.hpp

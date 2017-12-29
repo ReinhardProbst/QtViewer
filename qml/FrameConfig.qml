@@ -3,6 +3,8 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.2
 
+import FileNameCtrl 1.0
+
 Frame {
     background: Rectangle {
         color: design.lightGrey
@@ -14,10 +16,10 @@ Frame {
         rowSpacing: 15
         flow: GridLayout.TopToBottom
 
-        function openFileDialog(exist, id)
+        function openFileDialog(load, id)
         {
             console.info("openFileDialog");
-            id.selectExisting = exist;
+            id.selectExisting = load;
             id.open();
         }
 
@@ -72,26 +74,36 @@ Frame {
     }
 
     FileDialog {
-        objectName: "fileNominal"
         id: fileNominal
         title: "Choose a nominal file"
         nameFilters: ["Nominal files (*.json)", "nominal.json"]
-        signal nominalName(string msg)
         //folder: "file:/opt/nominal.json"
         //selectExisting: true
         //selectFolder: false
         //selectMultiple: false
         onAccepted: {
-            console.info("You chose: " + fileNominal.fileUrls)
-            fileNominal.nominalName(fileNominal.fileUrls)
+            console.info("You choose nominal file: " + fileNominal.fileUrl)
+
+            if(fileNominal.selectExisting) {
+                fileNameControl.nominalLoad = fileNominal.fileUrl
+            }
+            else {
+                fileNameControl.nominalSave(fileNominal.fileUrl)
+            }
         }
         onRejected: {
-            console.info("Canceled")
-            fileNominal.nominalName("NONE")
+            console.info("Choosing nominal file canceled")
+
+            if(fileNominal.selectExisting) {
+                fileNameControl.nominalLoad = "NONE"
+            }
+            else {
+                fileNameControl.nominalSave("NONE")
+            }
         }
     }
+
     FileDialog {
-        objectName: "fileTrend"
         id: fileTrend
         title: "Choose a trend file"
         nameFilters: ["Trend files (*.json)", "trend.json"]
@@ -101,12 +113,15 @@ Frame {
         //selectFolder: false
         //selectMultiple: false
         onAccepted: {
-            console.info("You chose: " + fileTrend.fileUrls)
-            fileTrend.trendName(fileTrend.fileUrls)
+            console.info("You chose trend file: " + fileTrend.fileUrl)
+            fileTrend.trendName(fileTrend.fileUrl)
         }
         onRejected: {
-            console.info("Canceled")
+            console.info("Choosing trend file canceled")
             fileTrend.trendName("NONE")
+        }
+        Component.onCompleted: {
+            fileTrend.trendName.connect(fileNameControl.trendLoad)
         }
     }
 }

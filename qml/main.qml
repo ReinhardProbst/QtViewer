@@ -89,6 +89,6 @@ ApplicationWindow {
     }
 
     footer: Label {
-        text: qsTr("Version 0.0.3")
+        text: qsTr("Version 0.0.4")
     }
 }
