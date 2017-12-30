@@ -46,7 +46,6 @@ ApplicationWindow {
         background: Rectangle {
                 color: design.grey
         }
-        height: Math.max(tabButton0.height, tabButton1.height, tabButton2.height)
         TabButton {
             id: tabButton0
 //            contentItem: Text {
