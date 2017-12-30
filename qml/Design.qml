@@ -51,9 +51,9 @@
 import QtQuick 2.9
 
 QtObject {
-    /* Colors */
+    /* Palette */
+    readonly property color lightGrey: "#e0e0e0"
     readonly property color grey: "#b2b1b1"
-    readonly property color lightGrey: "#f0f0f0"
     readonly property color darkGrey: "#808080"
     readonly property color white: "#ffffff"
     readonly property color blue: "#0000ff"
@@ -69,7 +69,7 @@ QtObject {
     readonly property int bwidth: 5
 
     /* Fonts */
-    readonly property font textStyle: Qt.font({family: "Arial", pixelSize: 18, bold: true, italic: false, underline: false})
+    readonly property font textStyle: Qt.font({family: "Ubuntu", pixelSize: 18, bold: true, italic: false, underline: false})
 
     /* Common */
     readonly property int smallSize: 10

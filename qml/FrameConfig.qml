@@ -27,48 +27,54 @@ Frame {
             id: buttonNominalLoad
             Layout.row: 0
             Layout.column: 0
-            Label {
-                id: labelNominalLoad
+            contentItem: Text {
                 text: "Load nominal .."
-                font.pointSize: 14
-                font.bold: true
-                anchors.left: parent.left
-                anchors.leftMargin: 5
-                anchors.verticalCenter: parent.verticalCenter
+                font: design.textStyle
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
             }
-            implicitWidth: labelNominalLoad.implicitWidth+15
+            background: Rectangle {
+                implicitWidth: 170
+                implicitHeight: 50
+                color: design.grey
+            }
             onClicked: frameGrid.openFileDialog(true, fileNominal)
         }
         Button {
             id: buttonNominalSave
             Layout.row: 0
             Layout.column: 1
-            Label {
-                id: labelNominalSave
+            contentItem: Text {
                 text: "Save nominal .."
-                font.pointSize: 14
-                font.bold: true
-                anchors.left: parent.left
-                anchors.leftMargin: 5
-                anchors.verticalCenter: parent.verticalCenter
+                font: design.textStyle
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
             }
-            implicitWidth: labelNominalLoad.implicitWidth+15
+            background: Rectangle {
+                implicitWidth: 170
+                implicitHeight: 50
+                color: design.grey
+            }
             onClicked: frameGrid.openFileDialog(false, fileNominal)
         }
         Button {
             id: buttonTrend
             Layout.row: 1
             Layout.column: 0
-            Label {
-                id: labelTrend
+            contentItem: Text {
                 text: "Load trend .."
-                font.pointSize: 14
-                font.bold: true
-                anchors.left: parent.left
-                anchors.leftMargin: 5
-                anchors.verticalCenter: parent.verticalCenter
+                font: design.textStyle
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
             }
-            implicitWidth: labelNominalLoad.implicitWidth+15
+            background: Rectangle {
+                implicitWidth: 170
+                implicitHeight: 50
+                color: design.grey
+            }
             onClicked: frameGrid.openFileDialog(true, fileTrend)
         }
     }
