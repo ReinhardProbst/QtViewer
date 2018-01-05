@@ -52,26 +52,34 @@ import QtQuick 2.9
 
 QtObject {
     /* Palette */
-    readonly property color lightGrey: "#e0e0e0"
-    readonly property color grey: "#b2b1b1"
-    readonly property color darkGrey: "#808080"
-    readonly property color white: "#ffffff"
-    readonly property color blue: "#0000ff"
-    readonly property color red: "#ff0000"
-    readonly property color green: "#00ff00"
+    readonly property color signalWhite: "#ffffff"
+    readonly property color trafficBlue: "#0075bd"
+    readonly property color carmineRed: "#9d171b"
+    readonly property color anthraciteGrey: "#23343a"
+    readonly property color windowGrey: "#94a0a1"
+    readonly property color lightGrey: "#d1d6d3"
 
     /* Window */
-    readonly property int wwidth: 360
-    readonly property int wheight: 520
+    readonly property color windowBgnd: windowGrey
+    readonly property int windowHeight: 800
+    readonly property int windowWidth: 600
+
+
+    /* Button */
+    readonly property color buttonBgnd: lightGrey
+
+    /* Tabbar */
+    readonly property color tabBgnd: anthraciteGrey
+    readonly property color tabBgndActive: lightGrey
 
     /* Border */
     readonly property int bradius: 5
     readonly property int bwidth: 5
 
+    /* OK / NOK */
+    readonly property color okColor: "green"
+    readonly property color nokColor: carmineRed
+
     /* Fonts */
     readonly property font textStyle: Qt.font({family: "Ubuntu", pixelSize: 18, bold: true, italic: false, underline: false})
-
-    /* Common */
-    readonly property int smallSize: 10
-    readonly property int largeSize: 16
 }

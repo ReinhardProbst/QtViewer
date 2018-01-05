@@ -5,8 +5,8 @@ ApplicationWindow {
     objectName: "mainWindow"
     id: mainWindow
     visible: true
-    width: 800
-    height: 600
+    width: design.windowHeight
+    height: design.windowWidth
     title: qsTr("Profilometer")
 
     Design{ id: design }
@@ -20,21 +20,21 @@ ApplicationWindow {
             Label {
                 objectName: "frameConfig"
                 text: qsTr("Configuration")
-                color: design.blue
+                color: design.trafficBlue
                 anchors.centerIn: parent
             }
         }
         FrameProfileCanvas {
             Label {
                 text: qsTr("Profile with canvas")
-                color: design.blue
+                color: design.trafficBlue
                 anchors.centerIn: parent
             }
         }
         FrameProfileQPI {
             Label {
                 text: qsTr("Nominal and profile with painter")
-                color: design.blue
+                color: design.trafficBlue
                 anchors.centerIn: parent
             }
         }
@@ -44,7 +44,7 @@ ApplicationWindow {
         id: tabBarH
         currentIndex: swipeView.currentIndex
         background: Rectangle {
-                color: design.grey
+                color: design.tabBgnd
         }
         TabButton {
             id: tabButton0
@@ -60,7 +60,7 @@ ApplicationWindow {
                 source: "../images/Histogram.png"
             }
             background: Rectangle {
-                 color: tabBarH.currentIndex == 0 ? design.grey : design.darkGrey
+                 color: tabBarH.currentIndex == 0 ? design.tabBgndActive : design.tabBgnd
             }
         }
         TabButton {
@@ -71,7 +71,7 @@ ApplicationWindow {
                 source: "../images/Trigger.png"
             }
             background: Rectangle {
-                color: tabBarH.currentIndex == 1 ? design.grey : design.darkGrey
+                color: tabBarH.currentIndex == 1 ? design.tabBgndActive : design.tabBgnd
             }
         }
         TabButton {
@@ -82,7 +82,7 @@ ApplicationWindow {
                 source: "../images/Refresh.png"
             }
             background: Rectangle {
-                color: tabBarH.currentIndex == 2 ? design.grey : design.darkGrey
+                color: tabBarH.currentIndex == 2 ? design.tabBgndActive : design.tabBgnd
             }
         }
     }

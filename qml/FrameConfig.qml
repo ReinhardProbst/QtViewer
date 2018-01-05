@@ -7,7 +7,7 @@ import FileNameCtrl 1.0
 
 Frame {
     background: Rectangle {
-        color: design.lightGrey
+        color: design.windowBgnd
     }
     GridLayout {
         id: frameGrid
@@ -37,7 +37,7 @@ Frame {
             background: Rectangle {
                 implicitWidth: 170
                 implicitHeight: 50
-                color: design.grey
+                color: design.buttonBgnd
             }
             onClicked: frameGrid.openFileDialog(true, fileNominal)
         }
@@ -55,7 +55,7 @@ Frame {
             background: Rectangle {
                 implicitWidth: 170
                 implicitHeight: 50
-                color: design.grey
+                color: design.buttonBgnd
             }
             onClicked: frameGrid.openFileDialog(false, fileNominal)
         }
@@ -73,7 +73,7 @@ Frame {
             background: Rectangle {
                 implicitWidth: 170
                 implicitHeight: 50
-                color: design.grey
+                color: design.buttonBgnd
             }
             onClicked: frameGrid.openFileDialog(true, fileTrend)
         }
