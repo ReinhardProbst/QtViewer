@@ -1,10 +1,9 @@
 TEMPLATE = app
-QT += core quickcontrols2
+QT += quickcontrols2
 CONFIG += c++14
 
 #QTPLUGIN.platforms = webgl
 
-QMAKE_CXXFLAGS -= -std=gnu++1y
 QMAKE_CXXFLAGS *= -std=c++17 -fdiagnostics-color=always -Wfatal-errors
 
 QMAKE_CXXFLAGS_DEBUG *= -g -Og

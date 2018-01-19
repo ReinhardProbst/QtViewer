@@ -182,10 +182,10 @@ int main(int argc, char *argv[]) {
      * Signal / slots, established in C++ solely
      */
     QObject::connect(&fileNameCtrl, &FileNameCtrl::trendChanged,
-                     [&](QString fn) { std::cout << "Selected trend file name by lamda: " << fn.toStdString() << std::endl; });
+                     [&](QString fn) { std::cout << "Selected trend file name by lambda: " << fn.toStdString() << std::endl; });
 
     QObject::connect(&fileNameCtrl, &FileNameCtrl::nominalChanged,
-                     [&](QString fn) { std::cout << "Selected nominal file name by lamda: " << fn.toStdString() << std::endl; });
+                     [&](QString fn) { std::cout << "Selected nominal file name by lambda: " << fn.toStdString() << std::endl; });
 
     /*
      * Set changes to QML property and update canvas
