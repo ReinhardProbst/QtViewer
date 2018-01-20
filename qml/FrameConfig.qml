@@ -43,8 +43,8 @@ Frame {
         }
         Button {
             id: buttonNominalSave
-            Layout.row: 0
-            Layout.column: 1
+            Layout.row: 1
+            Layout.column: 0
             contentItem: Text {
                 text: "Save nominal .."
                 font: design.textStyle
@@ -61,7 +61,7 @@ Frame {
         }
         Button {
             id: buttonTrend
-            Layout.row: 1
+            Layout.row: 2
             Layout.column: 0
             contentItem: Text {
                 text: "Load trend .."
